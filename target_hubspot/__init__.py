@@ -55,13 +55,9 @@ def parse_args():
     Parses the command-line arguments mentioned in the SPEC and the
     BEST_PRACTICES documents:
     -c,--config     Config file
-    -s,--state      State file
-    -d,--discover   Run in discover mode
-    -p,--properties Properties file: DEPRECATED, please use --catalog instead
-    --catalog       Catalog file
     Returns the parsed args object from argparse. For each argument that
-    point to JSON files (config, state, properties), we will automatically
-    load and parse the JSON file.
+    point to JSON files (config), we will automatically load and parse 
+    the JSON file.
     '''
     parser = argparse.ArgumentParser()
 
@@ -147,6 +143,13 @@ def request(config, url, payload, params=None):
     return resp
 
 
+def upload_contacts(config, payload):
+    url = "https://api.hubapi.com/crm/v3/objects/contacts"
+    for p in payload:
+        payload_str = json.dumps(dict(properties=p))
+        request(config, url, payload_str)
+
+
 def upload_engagements(config, payload):
     url = "https://api.hubapi.com/engagements/v1/engagements"
     for p in payload:
@@ -161,6 +164,14 @@ def upload(config, args):
             payload = json.load(f)
         upload_engagements(config, payload)
         logger.info("engagements.json uploaded!")
+    
+    contacts_file = f"{config['input_path']}/contacts.json"
+    if os.path.exists(contacts_file):
+        logger.info("Found contacts.json, uploading...")
+        with open(contacts_file, "r") as f:
+            payload = json.load(f)
+        upload_contacts(config, payload)
+        logger.info("contacts.json uploaded!")
     
     logger.info("Posting process has completed!")
 
