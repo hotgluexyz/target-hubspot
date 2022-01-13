@@ -4,7 +4,7 @@ from setuptools import find_packages, setup
 
 setup(
     name='target-hubspot',
-    version='1.0.1',
+    version='1.0.2',
     description='hotglue target for exporting data to Hubspot API',
     author='hotglue',
     url='https://hotglue.xyz',
@@ -15,7 +15,8 @@ setup(
         'pandas==1.3.4',
         'argparse==1.4.0',
         'singer-python==5.12.2',
-        'xmltodict==0.12.0'
+        'xmltodict==0.12.0',
+        'attr==21.4.0'
     ],
     entry_points='''
         [console_scripts]
