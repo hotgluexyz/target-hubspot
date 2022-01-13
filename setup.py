@@ -16,7 +16,7 @@ setup(
         'argparse==1.4.0',
         'singer-python==5.12.2',
         'xmltodict==0.12.0',
-        'attr==21.4.0'
+        'attrs==21.4.0'
     ],
     entry_points='''
         [console_scripts]
