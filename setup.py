@@ -22,5 +22,21 @@ setup(
         [console_scripts]
         target-hubspot=target_hubspot:main
     ''',
-    packages=['target_hubspot']
+    packages=['target_hubspot'],
+    package_data = {
+        'tap_hubspot/schemas': [
+            "campaigns.json",
+            "companies.json",
+            "contact_lists.json",
+            "contacts.json",
+            "deals.json",
+            "email_events.json",
+            "forms.json",
+            "keywords.json",
+            "owners.json",
+            "subscription_changes.json",
+            "workflows.json",
+        ],
+    },
+    include_package_data=True,
 )
