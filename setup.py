@@ -24,18 +24,8 @@ setup(
     ''',
     packages=['target_hubspot'],
     package_data = {
-        'target_hubspot/schemas': [
-            "campaigns.json",
-            "companies.json",
-            "contact_lists.json",
-            "contacts.json",
-            "deals.json",
-            "email_events.json",
-            "forms.json",
-            "keywords.json",
-            "owners.json",
-            "subscription_changes.json",
-            "workflows.json",
+        'target_hubspot': [
+            "schemas/*.json"
         ],
     },
     include_package_data=True,
