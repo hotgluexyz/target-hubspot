@@ -24,7 +24,7 @@ setup(
     ''',
     packages=['target_hubspot'],
     package_data = {
-        'tap_hubspot/schemas': [
+        'target_hubspot/schemas': [
             "campaigns.json",
             "companies.json",
             "contact_lists.json",
